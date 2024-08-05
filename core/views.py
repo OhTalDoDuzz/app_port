@@ -23,7 +23,6 @@ def cadastro(request):
 def login(request):
     return login_usuario(request)
 
-
 #! ESCALA   
 def update(request, pk):
     return atualizar_escala(request, pk)
@@ -33,7 +32,6 @@ def delete(request, pk):
 
 def escalacao(request):
     return visualizar_escalacao(request)
-
 
 #! EVENTO   
 def delete_evento(request, pk):
@@ -45,14 +43,12 @@ def cadastro_evento(request):
 def update_evento(request, pk):
     return atualizar_evento(request,pk)
 
-
 #! QUANTITATIVO   
 def quantitativo(request):
     return criar_quantitativo(request)
 
 def delete_quantitativo(request, pk):
     return deletar_quantitativo(request, pk)
-
 
 #! CADASTRO COLABORADOR  
 def colaborador(request):
@@ -80,7 +76,6 @@ def delete_fornecedor(request, pk):
 def update_fornecedor(request, pk):
     return atualizar_fornecedor(request, pk)
 
-
 #!CONSULTAR ESCALA
 def consultar_escala(request):
     return visualizar_escala(request)
@@ -99,16 +94,12 @@ def compra_passagem(request):
 def update_passagem(request, pk):
     return atualizar_passagem(request, pk)
 
-
-
-
 #! Benefícios
 def beneficios(request):
     return visualizar_beneficios(request)
 
 def update_beneficios(request, pk):
     return atualizar_beneficios(request, pk)
-
 
 #! Realizado
 def realizado(request):
