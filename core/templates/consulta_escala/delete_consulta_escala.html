@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'delete.css' %}">
+    <title>Deletar Escala</title>
+</head>
+    <body>
+        <div class="content">
+
+            <h1>Deletar Escala</h1>
+
+            <div class="texto-delete"> 
+                <p>Tem certeza que deseja excluir este registro?</p>
+                <p id="item_delete"><strong>  "{{escala}}"  </strong></p>
+            </div>
+
+                <form method='POST'>
+                    {% csrf_token %}
+                    <input id="btn_confirmar" type="submit" value="CONFIRMAR">
+                </form>
+
+                <a id="btn_cancelar" href="{% url 'escalacao' %}">Cancel</a>
+        </div>
+    </body>
+</html>
+

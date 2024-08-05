@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'update_evento.css' %}">
+    <script>
+        function formatarCPF(campo) {
+            var cpf = campo.value.replace(/\D/g, ''); 
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); 
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); 
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            campo.value = cpf; 
+        }
+        </script>
+    <title>UPDATE EVENTO</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'colaborador'%}"> VOLTAR </a>
+        <h1>Modificar evento</h1>
+    </nav>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="field-form" type="text" name="nome" placeholder="Nome" value="{{ colaborador.nome|default_if_none:""  }}">
+        
+        <input class="field-form" type="text" name="sobrenome" placeholder="Sobrenome" value="{{ colaborador.sobrenome|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="rg" maxlength="9" placeholder="Rg" value="{{ colaborador.rg|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="cpf" maxlength="14" placeholder="CPF" oninput="formatarCPF(this)" value="{{ colaborador.cpf|default_if_none:"" }}">
+
+        <input class="field-form" type="text" name="telefone" placeholder="Telefone" value="{{ colaborador.telefone|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="cidade" placeholder="Cidade" value="{{ colaborador.cidade|default_if_none:""  }}">
+
+        <input class="field-form" type="date" name="data_nascimento" placeholder="Data de nascimento" value="{% if colaborador.data_nascimento %}{{ colaborador.data_nascimento|date:'Y-m-d' }}{% endif %}">
+
+        <input class="submit_btn" type="submit" value="ATUALIZAR">
+    </form>    
+</body>
+</html>

@@ -1,0 +1,177 @@
+{% comment %} {% load static %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'autentication_login.css' %}">
+    <title>Atualizar Escala</title>
+    <script>
+        function calcularDiferenca() {
+            var dataInicioStr = document.getElementById('id_data_inicio').value;
+            var dataFinalStr = document.getElementById('id_data_final').value;
+        
+            var dataInicio = new Date(dataInicioStr);
+            var dataFinal = new Date(dataFinalStr);
+            
+            var diferencaDias = Math.ceil((dataFinal - dataInicio) / (1000 * 60 * 60 * 24));
+
+            document.getElementById('id_qtd_diaria').value = diferencaDias + 1;
+        }
+        
+        window.onload = function() {
+            document.getElementById('id_data_inicio').addEventListener('change', calcularDiferenca);
+            document.getElementById('id_data_final').addEventListener('change', calcularDiferenca);
+            
+            calcularDiferenca();
+        };
+        
+    </script>
+</head>
+<body>
+    <div class="formulario">
+        <img src="../../static/img/norte_mkt.png" class="logoNorte" alt="logo Norte"/>
+        <h2 class="tituloLogin">ATUALIZAR ESCALA</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="evento">Evento:</label>
+            <input type="text" id="evento" name="evento" value="{{ escala.nome_evento }}" disabled>
+            <br>
+
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" value="{{ escala.nome_area }}" disabled>
+            <br>
+
+            <label for="id_name">Nome:</label>
+            <select id="id_name" name="name" onchange="checkName()">
+                {% if escala.id_colaborador %}
+                    <option value="{{ escala.id_colaborador }}">{{ escala.colaborador_name }}</option>
+                {% else %}
+                    <option value="">Selecione um colaborador</option>
+                {% endif %}
+                {% for colaborador in colaboradores %}
+                    <option value="{{ colaborador.id }}">{{ colaborador.nome }} {{ colaborador.sobrenome }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <label for="id_cargo">Cargo:</label>
+            <select id="id_cargo" name="cargo">
+                {% if escala.id_cargo %}
+                    <option value="{{ escala.id_cargo.id }}">{{ escala.nome_cargo }}</option>
+                {% else %}
+                    <option value="">Selecione um cargo</option>
+                {% endif %}
+                {% if escala.nome_area == "PERCURSO" %}
+                    <option value="8">NIVEL 1</option>
+                    <option value="9">NIVEL 2</option>
+                {% endif %}
+                {% if escala.nome_area == "PRODUÇÃO"  %}
+                    <option value="10">DIRETOR DE PROVA</option>
+                    <option value="11">COORDENADOR</option>
+                    <option value="12">PRODUTOR</option>
+                {% endif %}
+                {% if escala.nome_area == "ATIVAÇÃO"  %}
+                    <option value="11">COORDENADOR</option>
+                    <option value="12">PRODUTOR</option>
+                {% endif %}
+                {% if escala.nome_area == "KIT"  %}
+                    <option value="11">COORDENADOR</option>
+                    <option value="12">PRODUTOR</option>
+                {% endif %}
+                {% if escala.nome_area == "ATENDIMENTO"  %}
+                    <option value="13">GERENTE</option>
+                    <option value="11">COORDENADOR</option>
+                {% endif %}
+                {% if escala.nome_area == "COMERCIAL"  %}
+                    <option value="14">REPRESENTANTE</option>
+                {% endif %}
+                {% if escala.nome_area == "O2 PRIME"  %}
+                    <option value="14">REPRESENTANTE</option>
+                {% endif %}
+                {% if escala.nome_area == "O2 PRIME"  %}
+                    <option value="14">REPRESENTANTE</option>
+                {% endif %}
+                {% if escala.nome_area == "CENOGRAFIA"  %}
+                    <option value="11">COORDENADOR</option>
+                    <option value="15">SUP CENO</option>
+                    <option value="16">CENOTÉCNICO</option>
+                {% endif %}
+            </select>
+            <br>
+
+            <label for="contrato">Contrato:</label>
+            <input type="text" id="contrato" name="contrato" value="{{ escala.contrato }}" disabled>
+            <br>
+            
+            <label for="id_origem">Origem:</label>
+            <select id="id_origem" name="origem">
+                {% if escala.id_origem %}
+                    <option value="{{ escala.id_origem_id}}">{{ escala.origem }}</option>
+                {% else %}
+                    <option value="">Selecione uma origem</option>
+                {% endif %}
+                {% for origem in origens %}
+                    <option value="{{ origem.id }}">{{ origem.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+            <label for="id_data_inicio">Data de Início:</label>
+            <input type="date" id="id_data_inicio" name="data_inicio" value="{% if escala.data_inicio %}{{ escala.data_inicio|date:'Y-m-d' }}{% endif %}" disabled>
+            <br>
+            
+            <label for="id_data_final">Data Final:</label>
+            <input type="date" id="id_data_final" name="data_final" value="{% if escala.data_final %}{{ escala.data_final|date:'Y-m-d' }}{% endif %}" disabled>
+            <br>
+            
+            <label for="id_qtd_diaria">Quantidade Diária:</label>
+            <input type="number" id="id_qtd_diaria" name="qtd_diaria" disabled>
+            <br>
+            
+            <label for="id_qtd_dias_pgto">Quantidade de Dias de Pagamento:</label>
+            <input type="text" id="id_qtd_dias_pgto" name="qtd_dias_pgto" value="{{ escala.qtd_dias_pgto|default:"1" }}" disabled>
+            <br>
+            
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                {% if escala.status_fase1 %}
+                    <option value="{{ escala.status_fase1 }}">{{ escala.status_fase1 }}</option>
+                {% else %}
+                    <option value="">Selecione uma opção:</option>
+                {% endif %}
+                    <option value="CONCLUÍDO">CONCLUÍDO</option>
+            </select>
+            <br>
+            
+            <div style="display: flex; gap: 10px;">
+                <button type="submit">Atualizar</button>
+                <a href="/escalacao/" style="text-decoration: none;">
+                    <button type="button">Voltar para Escalação</button>
+                </a>
+            </div>
+            <script>
+                function checkName() {
+                    var nameSelect = document.getElementById('id_name');
+                    var statusSelect = document.getElementById('status');
+                    
+                    if (!nameSelect.value) {
+                        statusSelect.value = 'PENDENTE';
+                        statusSelect.disabled = true;
+                    } else {
+                        statusSelect.disabled = false;
+                    }
+                }
+            
+                // Run checkName on page load to set initial state
+                document.addEventListener('DOMContentLoaded', checkName);
+            </script>
+        </form>
+    </div>     
+</body>
+</html>

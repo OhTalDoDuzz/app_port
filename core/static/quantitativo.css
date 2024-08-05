@@ -1,0 +1,189 @@
+html, body {
+    background-color: white;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: fixed;
+}
+
+h1 {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0 auto; 
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    background-color: #2E2E48;
+}
+
+form {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.btn_nav {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.btn_nav:hover {
+    color: blue; 
+}
+
+.select_evento {
+    width: 300px;
+    font-size: 20px;
+    margin: 2-px;
+}
+
+.select_area {
+    margin-top: 10px;
+    width: 300px;
+    font-size: 20px;
+    margin: 2-px;
+}
+
+#adicionar_linha {
+    width: 70px;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Para distribuir os elementos à esquerda e à direita */
+    padding: 10px;
+}
+
+.linha_tabela {
+    border: 1px solid black;
+    width: 190px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 5px;
+    background-color: #BDBDBD;
+    color: black;
+    white-space: nowrap;
+}
+
+
+.inserir_dados {
+    display: flex;
+    width: 100%;
+}
+
+
+.submit_btn {
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: grey;
+    color: white;
+    border: 1px solid white ;
+    border-radius: 7px;
+}
+
+.submit_btn:hover {
+    background-color: green;
+}
+
+.select {
+    width: 80%;
+    font-size: 15px;
+}
+
+.quantity {
+    font-size: 15px;
+    width: 50%;
+    text-align: center;
+}
+
+
+.form-group {
+    margin-bottom: 0px;
+    font-size: 15px;
+    width: 80%;
+}
+.form-group label {
+    margin-bottom: 0px;
+    display: block;
+    font-weight: bold;
+}
+
+
+.escala_view {
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: scroll;
+    max-height: 700px;
+    border: 1px solid grey;
+}
+
+.tabela_geral {
+    width: 100vw;
+    border-collapse: collapse;
+    table-layout: auto;
+    overflow-y: scroll;
+    overflow-x: auto; 
+    max-height: 700px; 
+}
+
+.tabela_header th, .linha_tabela {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.tabela_header th {
+    background-color: #f2f2f2;
+}
+
+.btn_cell {
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .tabela_geral thead {
+        display: none;
+    }
+
+    .tabela_geral, .tabela_geral tbody, .tabela_geral tr, .tabela_geral td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela_geral tr {
+        margin-bottom: 15px;
+    }
+
+    .tabela_geral td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .tabela_geral td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}

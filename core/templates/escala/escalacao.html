@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+    <title>Escalação</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+        <h1>Escalação Eventos</h1>
+    </nav>
+    <div class="table-wrapper">
+        <table class="tabela_geral">
+            <thead  class="tabela_header">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome Evento</th>
+                    <th>Data Evento</th>
+                    <th>Colaborador</th>
+                    <th>Nome Área</th>
+                    <th>Nome Cargo</th>
+                    <th>Contrato</th>
+                    <th>Origem</th>
+                    <th>Data Início</th>
+                    <th>Data Final</th>
+                    <th>Quantidade Diária</th>
+                    <th>Quantidade Dias Pagto</th>
+                    <th>Unidade Diária</th>
+                    <th>Total Diária</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for escala in escalas %}
+                {% if escala.status_fase1 == 'PENDENTE' %}
+                <tr class="linha">
+                    {% comment %} NOVOS {% endcomment %}
+                    <td class="linha_tabela">{{ escala.id }}</td>
+                    <td class="linha_tabela">{{ escala.nome_evento }}</td>
+                    <td class="linha_tabela">{{ escala.data_evento |date:'d/m/Y'}}</td>
+                    <td class="linha_tabela">{{ escala.colaborador_name |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.nome_area }}</td>
+                    <td class="linha_tabela">{{ escala.nome_cargo |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.contrato |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.origem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.data_inicio |default_if_none:""|date:'d/m/Y'}}</td>
+                    <td class="linha_tabela">{{ escala.data_final |default_if_none:""|date:'d/m/Y'}}</td>
+                    <td class="linha_tabela">{{ escala.qtd_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.qtd_dias_pgto |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.unidade_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.total_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.status_fase1 }}</td>
+                    <td class="btn_cell">
+                        <a class="buttons" href="{% url 'update_escala' escala.id %}">🔃</a>
+                        <a class="buttons" href="{% url 'delete_escala' escala.id %}">⛔</a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

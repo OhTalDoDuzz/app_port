@@ -1,0 +1,136 @@
+html {
+    height: 100%;
+    position: fixed; 
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0.7, 0.7, 0.7, 0.7); 
+    z-index: -1; 
+}
+
+html::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/Site-.gif') no-repeat center center fixed;
+    background-size: cover;
+    /* filter: blur(20px);  */
+    z-index: -2; 
+    opacity: 0.75; 
+}
+
+
+.logo{
+    width: 105px;
+    height: auto;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+.sidebar-index {
+    background: #2E2E48;
+    height: 100%; 
+    width: 400px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0px 0 0px 45px;
+    overflow: auto;
+} 
+
+.side_btn {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #59598E;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px;
+    align-items: center;        
+    text-transform: capitalize;
+    transition: all ease-out .3s;
+}
+
+.side_btn:hover {
+    color: #fff;
+    border-left: 5px solid #7E73FF;
+}
+
+.btn_conteiner{
+    display: flex ;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 10px;
+}
+
+.background_page h1 {
+    padding: 350px;
+    color: white;
+    margin-left: 550px;
+    font-size: 20px;
+    position: fixed;
+    text-shadow: 
+        2px 2px 0 #000,  
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000;
+}
+
+.divider_sidebar {
+    width: 100%;
+    height: 1px; 
+    background-color: white; 
+    margin: 10px 0; 
+}
+
+.user-info {    
+    color: #fff;    
+    padding: 20px 10px;
+    top: 0;
+    border-radius: 20px;
+    width: auto;    
+    text-align: left;
+    margin: 0 auto;
+}
+
+#user-info-nome,
+#user-info-email,
+#user-info-username {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    display: block; 
+    width: auto;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+}
+
+#user-info-nome{
+    font-size: 18px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.divider-text {
+    font-size: 25px;
+    color: white;
+}
+
+.divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: white;
+}

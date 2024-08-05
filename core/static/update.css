@@ -1,0 +1,47 @@
+html, body {
+    background-color: #2E294E;
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+h2{
+    color: white;
+    text-align: center;
+}
+
+.input-form {
+    font-size: 20px;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    margin: 0px;
+    grid-column: 1 / span 1;
+}
+
+.formulario-update {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+.btn-submit {
+    width: 120px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 50px;
+    margin: 0 auto;
+    display: block;
+    grid-column: 1 / span 1;
+}
+
+.btn-submit:hover {
+    background-color: green;
+    color: black;
+    transition: 4;
+}

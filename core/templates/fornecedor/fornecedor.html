@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'colaborador.css' %}">
+    <title>CADASTRO FORNECEDOR</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+    </nav>
+    <h1>CADASTRO FORNECEDOR</h1>
+    <button class="btn-novo-colaborador" onclick="window.location.href='{% url 'cadastrar_fornecedor' %}'">NOVO</button>
+    <div class="table-wrapper">
+        <table class="tabela_geral">
+            <thead class="tabela_header">
+                <tr>
+                    <th>Nome</th>
+                    <th>Cnpj</th>
+                    <th>Cpf</th>
+                    <th>Serviço</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fornecedor in fornecedores %}
+                    <tr>
+                        <td class="linha_tabela">{{ fornecedor.name }}</td>
+                        <td class="linha_tabela">{{ fornecedor.cnpj }}</td>
+                        <td class="linha_tabela">{{ fornecedor.cpf }}</td>
+                        <td class="linha_tabela">{{ fornecedor.servico }}</td>
+                        <td class="btn_cell">
+                            <a class="buttons" href="{% url 'update_fornecedor' pk=fornecedor.pk %}">🔃</a>
+                            <a class="buttons" href="{% url 'delete_fornecedor' pk=fornecedor.pk %}">⛔</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'cadastrar_forcedor.css' %}">
+
+    <title>CADASTRO FORNECEDOR</title>
+</head>
+<body>
+    <a class="btn_nav" href="{% url 'colaborador'%}"> VOLTAR </a>
+    <h1>CADASTRAR FORNECEDOR</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <input class="field-form" type="text" name="name" placeholder="Nome">
+
+        <input class="field-form" type="text" name="cnpj" maxlength="14" placeholder="Cnpj">
+
+        <input class="field-form" type="text" name="cpf" maxlength="11" placeholder="Cpf">
+
+        <input class="field-form" type="text" name="servico" placeholder="Serviço">
+
+        <input class="submit_btn" type="submit" value="Submit">
+    </form>
+</body>
+</html>

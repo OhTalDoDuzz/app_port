@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+    <title>Realizado</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+        <h1>Realizado</h1>
+    </nav>
+    <div class="table-wrapper">
+        <table class="tabela_geral">
+            <thead  class="tabela_header">
+                <tr>
+                    <th>ID</th>
+                    <th>ID Evento</th> 
+                    <th>Nome Evento</th>
+                    <th>Data Evento</th>
+                    <th>ID Colaborador</th> 
+                    <th>Colaborador</th>
+                    <th>Nome Área</th>
+                    <th>Nome Cargo</th>
+                    <th>Contrato</th>
+                    <th>Origem</th>
+                    <th>Data Início</th>
+                    <th>Data Final</th>
+                    <th>Quantidade Diária</th>
+                    <th class="realizado">R Quantidade Diária</th>
+                    <th>Quantidade Dias Pagto</th>
+                    <th class="realizado">R Quantidade Dias Pagto</th>
+                    <th>Unidade Diária</th>
+                    <th class="realizado">R Unidade Diária</th>
+                    <th>Total Diária</th>
+                    <th class="realizado">R Total Diária</th>
+                    <th>Passagem</th>
+                    <th>Valor Passagem</th>
+                    <th class="realizado">R Valor Passagem</th>
+                    <th>Hora Ida</th>
+                    <th>Hora Volta</th>
+                    <th>Meio de Transporte</th>
+                    <th class="realizado">R Meio de Transporte</th>
+                    <th>Companhia Aérea</th>
+                    <th class="realizado">R Companhia Aérea</th>
+                    <th>Loc do Voo</th>
+                    <th>Alimentação Semana Uni</th>
+                    <th class="realizado">R Alimentação Semana Uni</th>
+                    <th>Alimentação Semana Qtd</th>
+                    <th class="realizado">R Alimentação Semana Qtd</th>
+                    <th>Alimentação Fds Uni</th>
+                    <th class="realizado">R Alimentação Fds Uni</th>
+                    <th>Alimentação Fds Qtd</th>
+                    <th class="realizado">R Alimentação Fds Qtd</th>
+                    <th>Alimentação Total</th>
+                    <th class="realizado">R Alimentação Total</th>
+                    <th>Valor Mobilidade</th>
+                    <th class="realizado">R Valor Mobilidade</th>
+                    <th>Saída</th>
+                    <th>Retorno</th>
+                    <th>Valor deslocamento</th>
+                    <th class="realizado">R Valor deslocamento</th>
+                    <th>Status Fase 1</th>
+                    <th>Status Fase 2</th>
+                    <th>Status Fase 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for realizado in realizado %}
+                <tr>
+                    <td class="linha_tabela">{{ realizado.id }}</td>
+                    <td class="linha_tabela">{{ realizado.id_evento_id }}</td> 
+                    <td class="linha_tabela">{{ realizado.nome_evento }}</td>
+                    <td class="linha_tabela">{{ realizado.data_evento | date:'d/m/Y' }}</td>
+                    <td class="linha_tabela">{{ realizado.id_colaborador }}</td> 
+                    <td class="linha_tabela">{{ realizado.colaborador_name }}</td>
+                    <td class="linha_tabela">{{ realizado.nome_area }}</td>
+                    <td class="linha_tabela">{{ realizado.nome_cargo }}</td>
+                    <td class="linha_tabela">{{ realizado.contrato }}</td>
+                    <td class="linha_tabela">{{ realizado.origem }}</td>
+                    <td class="linha_tabela">{{ realizado.data_inicio | date:'d/m/Y' }}</td>
+                    <td class="linha_tabela">{{ realizado.data_final | date:'d/m/Y' }}</td>
+                    <td class="linha_tabela">{{ realizado.qtd_diaria }}</td>
+                    <td class="realizado-item">{{ realizado.r_qtd_diaria }}</td>
+                    <td class="linha_tabela">{{ realizado.qtd_dias_pgto }}</td>
+                    <td class="realizado-item">{{ realizado.r_qtd_dias_pgto }}</td>
+                    <td class="linha_tabela">{{ realizado.unidade_diaria }}</td>
+                    <td class="realizado-item">{{ realizado.r_unidade_diaria }}</td>
+                    <td class="linha_tabela">{{ realizado.total_diaria }}</td>
+                    <td class="realizado-item">{{ realizado.r_total_diaria }}</td>
+                    <td class="linha_tabela">{{ realizado.passagem }}</td>
+                    <td class="linha_tabela">{{ realizado.valor_passagem }}</td>
+                    <td class="realizado-item">{{ realizado.r_valor_passagem }}</td>
+                    <td class="linha_tabela">{{ realizado.hora_ida }}</td>
+                    <td class="linha_tabela">{{ realizado.hora_volta }}</td>
+                    <td class="linha_tabela">{{ realizado.meio_transporte }}</td>
+                    <td class="realizado-item">{{ realizado.r_meio_transporte }}</td>
+                    <td class="linha_tabela">{{ realizado.companhia_aerea }}</td>
+                    <td class="realizado-item">{{ realizado.r_companhia_aerea }}</td>
+                    <td class="linha_tabela">{{ realizado.loc_voo }}</td>
+                    <td class="linha_tabela">{{ realizado.alimentacao_semana_un }}</td>
+                    <td class="realizado-item">{{ realizado.r_alimentacao_semana_un }}</td>
+                    <td class="linha_tabela">{{ realizado.alimentacao_semana_qtd }}</td>
+                    <td class="realizado-item">{{ realizado.r_alimentacao_semana_qtd }}</td>
+                    <td class="linha_tabela">{{ realizado.alimentacao_fds_un }}</td>
+                    <td class="realizado-item">{{ realizado.r_alimentacao_fds_un }}</td>
+                    <td class="linha_tabela">{{ realizado.alimentacao_fds_qtd }}</td>
+                    <td class="realizado-item">{{ realizado.r_alimentacao_fds_qtd }}</td>
+                    <td class="linha_tabela">{{ realizado.alimentacao_total }}</td>
+                    <td class="realizado-item">{{ realizado.r_alimentacao_total }}</td>
+                    <td class="linha_tabela">{{ realizado.valor_mobilidade }}</td>
+                    <td class="realizado-item">{{ realizado.r_valor_mobilidade }}</td>
+                    <td class="linha_tabela">{{ realizado.saida }}</td>
+                    <td class="linha_tabela">{{ realizado.retorno }}</td>
+                    <td class="linha_tabela">{{ realizado.valor_deslocamento }}</td>
+                    <td class="realizado-item">{{ realizado.r_valor_deslocamento }}</td>
+                    <td class="linha_tabela">{{ realizado.status_fase1 }}</td>
+                    <td class="linha_tabela">{{ realizado.status_fase2 }}</td>
+                    <td class="linha_tabela">{{ realizado.status_fase3 }}</td>
+                    <td class="btn_cell">
+                        <a class="buttons" href="{% url 'update_realizado' realizado.id %}">🔃</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

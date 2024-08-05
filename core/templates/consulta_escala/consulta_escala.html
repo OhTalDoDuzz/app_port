@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+    <title>Consulta Escalação</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+        <h1>Consultar Escala</h1>
+    </nav>
+    <div class="table-wrapper">
+        <table class="tabela_geral">
+            <thead  class="tabela_header">
+                <tr>
+                    <th>ID</th>
+                    <th>ID Evento</th> 
+                    <th>Nome Evento</th>
+                    <th>Data Evento</th>
+                    <th>ID Colaborador</th> 
+                    <th>Colaborador</th>
+                    <th>ID Área</th> 
+                    <th>Nome Área</th>
+                    <th>ID Cargo</th> 
+                    <th>Nome Cargo</th>
+                    <th>Contrato</th>
+                    <th>Origem</th>
+                    <th>Data Início</th>
+                    <th>Data Final</th>
+                    <th>Quantidade Diária</th>
+                    <th>Quantidade Dias Pagto</th>
+                    <th>Unidade Diária</th>
+                    <th>Total Diária</th>
+                    <th>Passagem</th>
+                    <th>Valor Passagem</th>
+                    <th>Hora Ida</th>
+                    <th>Hora Volta</th>
+                    <th>Meio de Transporte</th>
+                    <th>Companhia Aérea</th>
+                    <th>Loc do Voo</th>
+                    <th>Alimentação Semana Uni</th>
+                    <th>Alimentação Semana Qtd</th>
+                    <th>Alimentação Fds Uni</th>
+                    <th>Alimentação Fds Qtd</th>
+                    <th>Alimentação Total</th>
+                    <th>Valor Mobilidade</th>
+                    <th>Saída</th>
+                    <th>Retorno</th>
+                    <th>Produção</th>
+                    <th>Compras</th>
+                    <th>RH</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for escala in escalas %}
+                <tr>
+                    <td class="linha_tabela">{{ escala.id }}</td>
+                    <td class="linha_tabela">{{ escala.id_evento_id}}</td> 
+                    <td class="linha_tabela">{{ escala.nome_evento }}</td>
+                    <td class="linha_tabela">{{ escala.data_evento |date:'d/m/Y'}}</td>
+                    <td class="linha_tabela">{{ escala.id_colaborador |default_if_none:""}}</td> 
+                    <td class="linha_tabela">{{ escala.colaborador_name |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.id_area_id}}</td> 
+                    <td class="linha_tabela">{{ escala.nome_area }}</td>
+                    <td class="linha_tabela">{{ escala.id_cargo_id |default_if_none:""}}</td> 
+                    <td class="linha_tabela">{{ escala.nome_cargo |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.contrato |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.origem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.data_inicio |default_if_none:""|date:'d/m/Y'}}</td>
+                    <td class="linha_tabela">{{ escala.data_final |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.qtd_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.qtd_dias_pgto |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.unidade_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.total_diaria |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.passagem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.valor_passagem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.hora_ida |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.hora_volta |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.meio_transporte |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.companhia_aerea |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.loc_voo |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.alimentacao_semana_un |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.alimentacao_semana_qtd |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.alimentacao_fds_un |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.alimentacao_fds_qtd |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.alimentacao_total |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.valor_mobilidade |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.saida |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.retorno |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.status_fase1 |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.status_fase2 |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.status_fase3 |default_if_none:""}}</td>
+                    {% if escala.status_fase3 != 'CONCLUÍDO' %}
+                    <td class="btn_cell">
+                        <a class="buttons" href="{% url 'deletar_consulta_escala' escala.id %}">⛔</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

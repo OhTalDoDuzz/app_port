@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'update_evento.css' %}">
+    <title>Modificar Fornecedor</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'fornecedor'%}"> VOLTAR </a>
+        <h1>Modificar Fornecedor</h1>
+    </nav>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="field-form" type="text" name="name" placeholder="Nome" value="{{ fornecedor.name|default_if_none:""  }}">
+        
+        <input class="field-form" type="text" name="cnpj" placeholder="Cnpj" value="{{ fornecedor.cpf|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="cpf" placeholder="Cpf" value="{{ fornecedor.cpf|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="servico" placeholder="Serviço" value="{{ fornecedor.servico|default_if_none:""  }}">
+
+        <input class="submit_btn" type="submit" value="ATUALIZAR">
+
+    </form>    
+</body>
+</html>

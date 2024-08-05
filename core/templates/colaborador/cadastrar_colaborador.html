@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'cadastar_colaborador.css' %}">
+    <title>CADASTRO COLABORADOR</title>
+</head>
+<body>
+    <a class="btn_nav" href="{% url 'colaborador'%}"> VOLTAR </a>
+    <h1>CADASTRAR COLABORADOR</h1>
+    
+    <form method="POST" action="{% url 'cadastrar_colaborador' %}">
+        {% csrf_token %}
+        <input class="field-form" type="text" name="nome" placeholder="Nome">
+
+        <input class="field-form" type="text" name="sobrenome" placeholder="Sobrenome">
+
+        <input class="field-form" type="text" name="rg"  maxlength="9" placeholder="Rg">
+
+        <input class="field-form" type="text" name="cpf"  maxlength="11" placeholder="Cpf">
+
+        <input class="field-form" type="text" name="telefone" placeholder="Telefone">
+
+        <input class="field-form" type="text" name="cidade" placeholder="Cidade">
+
+        <input class="field-form" type="date" name="data_nascimento" placeholder="data_nascimento">
+
+        <input class="submit_btn" type="submit" value="CADASTRAR">
+    </form>
+
+</body>
+</html>

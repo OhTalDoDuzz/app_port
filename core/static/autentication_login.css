@@ -1,0 +1,97 @@
+html, body {    
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.logoNorte {
+    align-self: flex-start;
+    height: 104px;
+    width: auto;
+    margin-left: 50px;
+}
+
+.tituloLogin {
+    color: #212C4B;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin: -10px 0 28px 0;
+}
+
+.formulario {
+    box-shadow: 3px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    width: 994px;
+    height: 561px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    border-radius: 16px; 
+    background-color: #fff;     
+}
+
+.input_box {
+    width: 450px;
+    height: 60px;
+    font-family: "Poppins", sans-serif;        
+    font-size: 20px;
+    border: none;
+    text-align: center;
+    background: #F5F5F5;
+    border-radius: 12px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.input_box.invalid {
+    border: 5px solid red;
+}
+
+.btn_page {
+    display: inline;
+}
+
+.submit_btn {    
+    width: 336px;
+    height: 48px;
+    border-radius: 12px;
+    background: #212C4B;
+    color: #fff;
+    font-size: 14px;    
+    font-weight: 800;
+    cursor: pointer;
+    font-family: "Poppins";
+    border: none;
+}
+
+.loginCadastro {
+    display: flex;
+    margin-top: 35px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 23px;
+}
+
+.submit_btn:hover {
+    background-color: #d01a91;    
+    transition: 0.3s;
+}
+
+.cadastre {
+    font-size: 14px;
+    color: #212C4B;
+    font-weight: 800;
+}
+
+.cadastre:hover {
+    color: #d01a91;
+    transition: 0.3s;
+}

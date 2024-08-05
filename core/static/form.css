@@ -1,0 +1,192 @@
+html, body {
+    background-color: #2E294E;
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+    font-family: "Poppins", sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.table-wrapper {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-width: 100%;
+}
+
+h1 {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    width: 75%; 
+    margin: 20px auto; 
+    padding: 20px 0;
+}
+
+.btn_nav {
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+
+}
+
+.btn_nav:hover {
+    color: blue; 
+}
+
+.tabela_header{
+    background-color: yellow;
+    white-space: nowrap;
+    padding:3px
+}
+
+.tabela_geral { 
+    border-radius: 30px;
+    overflow: auto;
+    width: 100%; 
+    margin: 20px auto;
+    padding-left: 20px ;
+    align-items: center; 
+    text-align: center; 
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.linha_tabela{
+    width: 500px;
+    width: 190px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background: #1F2A40;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.buttons{
+    display: flex;
+    font-size: 15px;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn_cadastrar{
+    background-color: yellow;
+    color: black;
+    border: 2px solid black;
+    padding: 5px 5px 5px 5px;
+    text-decoration: none;
+}
+
+.inserir_dados{
+    padding-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.cadastar_inputs{
+    border-radius: 5px;
+    width: 200px;
+    height: 25px;
+}
+
+.submit_btn{
+    height: 30px;
+}
+
+.btn_cell{
+    display: flex;
+    width: 15px;
+}
+
+.tabela_header{
+    background-color: #1A2038;
+    color: #fff;
+}
+
+.linha{
+    height: 80px;    
+}
+
+#dropdown{
+    height: 30px;
+    border-radius: 5px;
+}
+
+h1 {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    margin: 0 auto; 
+}
+
+.table-wrapper {
+    overflow-x: auto; 
+    overflow-y: auto; 
+    max-width: 100%; 
+    display: inline-block; 
+    height: 600px;
+    margin: 20px auto; 
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.content {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100vh; 
+}
+
+th{
+    padding: 10px;
+}
+
+.realizado{
+    background-color: lightgreen;
+}
+
+.realizado-item{
+    width: 500px;
+    border: 1px solid black;
+    width: 190px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    background-color: lightgreen;
+    color: black;
+    white-space: nowrap;
+}

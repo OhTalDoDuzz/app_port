@@ -1,0 +1,172 @@
+{% comment %} {% load static %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'autentication_login.css' %}">
+    <title>Atualizar Benefícios</title>
+    <script>        
+        function calcularDiferenca() {
+            var saidaStr = document.getElementById('saida').value.toLowerCase();
+            var retornoStr = document.getElementById('retorno').value.toLowerCase();
+            var deslocamentoInput = document.getElementById('deslocamento');
+            
+            var saida = 0;
+            var retorno = 0;
+    
+            if (saidaStr) {
+                if (saidaStr === 'dia anterior - antes das 14:00h') {
+                    saida = 50;
+                } else if (saidaStr === 'dia anterior - depois das 14:00h') {
+                    saida = 25;
+                }
+            }
+    
+            if (retornoStr) {
+                if (retornoStr === 'dia seguinte - antes das 14:00h') {
+                    retorno = 25;
+                } else if (retornoStr === 'dia seguinte - depois das 14:00h') {
+                    retorno = 50;
+                }
+            }
+    
+            deslocamentoInput.value = saida + retorno;
+        }
+        
+        window.onload = function() {
+            document.getElementById('saida').addEventListener('change', calcularDiferenca);
+            document.getElementById('retorno').addEventListener('change', calcularDiferenca);
+            
+            calcularDiferenca();
+        };
+    </script>
+
+</head>
+<body>
+    <div class="formulario">
+        <img src="../../static/img/norte_mkt.png" class="logoNorte" alt="logo Norte"/>
+        {% comment %} <h2>Atualizar Benefícios</h2> {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+
+            {% comment %} nome evento {% endcomment %}
+            <label for="evento">Evento:</label>
+            <input type="text" id="evento" name="evento" value="{{ escala.nome_evento }}" disabled>
+            <br>
+
+            {% comment %} colaborador {% endcomment %}
+            <label for="colaborador">Colaborador:</label>
+            <input type="text" id="colaborador" name="colaborador" value="{{ escala.colaborador_name }}" disabled>
+            <br>
+
+            {% comment %} Contrato {% endcomment %}
+            <label for="contrato">Contrato:</label>
+            <input type="text" id="contrato" name="contrato" value="{{ escala.contrato }}" disabled>
+            <br>
+            
+            {% comment %} nome area {% endcomment %}
+            <label for="area">Area::</label>
+            <input type="text" id="area" name="area" value="{{ escala.nome_area }}" disabled>
+            <br>
+
+            {% comment %} nome cargo {% endcomment %}
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" value="{{ escala.nome_cargo }}" disabled>
+            <br>
+
+            {% comment %} Hora ida {% endcomment %}
+            <label for="hora_ida">Hora_ida:</label>
+            <input type="text" id="hora_ida" name="hora_ida" value="{{ escala.hora_ida }}" disabled>
+            <br>
+
+            {% comment %} Hora volta {% endcomment %}
+            <label for="hora_volta">Hora_volta:</label>
+            <input type="text" id="hora_volta" name="hora_volta" value="{{ escala.hora_volta }}" disabled>
+            <br>
+
+            {% comment %} alimentação semana unit {% endcomment %}
+            <label for="alimentacao_valor_semana">Valor Alimentação semana:</label>
+            <input type="text" id="alimentacao_valor_semana" name="alimentacao_valor_semana" value="{{ escala.alimentacao_semana_un|default_if_none:"" }}">
+            <br>
+
+            {% comment %} alimentação semana qtd {% endcomment %}
+            <label for="alimentacao_qtd_semana">Quantidade Alimentação semana:</label>
+            <input type="text" id="alimentacao_qtd_semana" name="alimentacao_qtd_semana" value="{{ escala.alimentacao_semana_qtd|default_if_none:"" }}">
+            <br>
+
+            {% comment %} alimentação fds unit {% endcomment %}
+            <label for="alimentacao_valor_fds">Valor Alimentação Fim de semana:</label>
+            <input type="text" id="alimentacao_valor_fds" name="alimentacao_valor_fds" value="{{ escala.alimentacao_fds_un|default_if_none:"" }}">
+            <br>
+
+            {% comment %} alimentação fds qtd {% endcomment %}
+            <label for="alimentacao_qtd_fds">Quantidade Alimentação Fim de semana:</label>
+            <input type="text" id="alimentacao_qtd_fds" name="alimentacao_qtd_fds" value="{{ escala.alimentacao_fds_qtd|default_if_none:"" }}">
+            <br>
+
+            {% comment %} alimentação fds qtd {% endcomment %}
+            <label for="valor_mobilidade">Mobilidade:</label>
+            <input type="text" id="valor_mobilidade" name="valor_mobilidade" value="{{ escala.valor_mobilidade|default_if_none:"" }}">
+            <br>
+
+            {% comment %} saida {% endcomment %}
+            {% if escala.contrato == "FREELA" %}
+                <label for="saida">Saída:</label>
+                <select id="saida" name="saida">
+                    {% if escala.saida %}
+                        <option value="{{ escala.saida }}">{{ escala.saida }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção:</option>
+                    {% endif %}
+                    <option value="DIA ANTERIOR - ANTES DAS 14:00H">DIA ANTERIOR - ANTES DAS 14:00H</option>
+                    <option value="DIA ANTERIOR - DEPOIS DAS 14:00H">DIA ANTERIOR - DEPOIS DAS 14:00H</option>
+                </select>
+                <br>
+
+                {% comment %} retorno {% endcomment %}
+                <label for="retorno">Retorno:</label>
+                <select id="retorno" name="retorno">
+                    {% if escala.retorno %}
+                        <option value="{{ escala.retorno }}">{{ escala.retorno }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção:</option>
+                    {% endif %}
+                    <option value="DIA SEGUINTE - ANTES DAS 14:00H">DIA SEGUINTE - ANTES DAS 14:00H</option>
+                    <option value="DIA SEGUINTE - DEPOIS DAS 14:00H">DIA SEGUINTE - DEPOIS DAS 14:00H</option>
+                </select>
+                <br>
+
+                {% comment %} Deslocamento {% endcomment %}
+                <label for="deslocamento">Valor deslocamento:</label>
+                <input type="text" id="deslocamento" name="deslocamento" value="{{ escala.valor_deslocamento|default_if_none:"" }}">
+                <br>   
+            {% endif %}
+
+            {% comment %} STATUS {% endcomment %}
+            <label for="status3">Status:</label>
+            <select id="status3" name="status3">
+                {% if escala.status_fase3 %}
+                    <option value="{{ escala.status_fase3 }}">{{ escala.status_fase3 }}</option>
+                {% else %}
+                    <option value="">Selecione uma opção:</option>
+                {% endif %}
+                    <option value="CONCLUÍDO">CONCLUÍDO</option>
+            </select>
+            <br>
+            
+            
+            <div style="display: flex; gap: 10px;">
+                <button type="submit">Atualizar</button>
+                <a href="/beneficios/" style="text-decoration: none;">
+                    <button type="button">Voltar para Benefícios</button>
+                </a>
+            </div>
+        </form>
+    </div>     
+</body>
+</html>

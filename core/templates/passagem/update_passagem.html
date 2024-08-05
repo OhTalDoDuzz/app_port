@@ -1,0 +1,155 @@
+{% comment %} {% load static %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'autentication_login.css' %}">
+    <title>Atualizar Passagem</title>
+    </script>
+</head>
+<body>
+    <div class="formulario" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="../../static/img/norte_mkt.png" class="logoNorte" alt="logo Norte"/>
+        {% comment %} <h2 class="tituloLogin">ATUALIZAR PASSAGEM</h2> {% endcomment %}
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <form method="post" style="display: inline-block; vertical-align: top;">
+                {% csrf_token %}
+                {% comment %} EVENTO {% endcomment %}
+                <label for="id_evento">Evento:</label>
+                <input type="text" id="id_evento" name="evento" value="{{ escala.nome_evento }}" disabled>
+                <br>
+        
+                {% comment %} COLABORADOR {% endcomment %}
+                <label for="id_colaborador">Colaborador:</label>
+                <input type="text" id="id_colaborador" name="colaborador" value="{{ escala.colaborador_name}}" disabled>
+                <br>
+        
+                {% comment %} PASSAGEM {% endcomment %}
+                <label for="id_passagem">Passagem:</label>
+                <select id="id_passagem" name="passagem">
+                    {% if escala.passagem %}
+                        <option value="{{ escala.passagem }}">{{ escala.passagem }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção</option>
+                    {% endif %}
+                    <option value="True">SIM</option>
+                    <option value="False">NÃO</option>
+                </select>
+                <br>
+        
+                {% comment %} VALOR PASSAGEM {% endcomment %}
+                <label for="id_valor_passagem">Valor Passagem:</label>
+                <input type="text" id="id_valor_passagem" name="valor_passagem" value="{{ escala.valor_passagem|default_if_none:'0'}}">
+                <br>                     
+
+                {% comment %} Sugestão Ida {% endcomment %}
+                <label for="id_sug_ida">Sugestão Ida:</label>
+                <input type="text" id="id_sug_ida" name="sug_ida" value="{{ escala.sugestao_hora_ida}}" disabled>
+                <br>
+
+                {% comment %} Sugestão Volta {% endcomment %}
+                <label for="id_sug_volta">Sugestão Volta:</label>
+                <input type="text" id="id_sug_volta" name="sug_volta" value="{{ escala.sugestao_hora_volta}}" disabled>
+                <br>
+
+                {% comment %} HORA_IDA {% endcomment %}
+                <label for="id_hora_ida">Hora de Ida:</label>
+                <input type="time" id="id_hora_ida" name="hora_ida" value="{% if escala.hora_ida %}{{ escala.hora_ida|time:"H:i" }}{% endif %}">
+                <br>
+        
+                {% comment %} HORA VOLTA {% endcomment %}
+                <label for="id_hora_volta">Hora de Volta:</label>
+                <input type="time" id="id_hora_volta" name="hora_volta" value="{% if escala.hora_volta %}{{ escala.hora_volta|time:"H:i" }}{% endif %}">
+                <br>
+        
+                {% comment %} MEIO DE TRANSPORTE {% endcomment %}
+                <label for="id_transporte">Meio de Transporte:</label>
+                <select id="id_transporte" name="transporte">
+                    {% if escala.meio_transporte %}
+                        <option value="{{ escala.meio_transporte }}">{{ escala.meio_transporte }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção</option>
+                    {% endif %}
+                    <option value="AVIÃO">AVIÃO</option>
+                    <option value="ÔNIBUS">ÔNIBUS</option>
+                    <option value="VAN">VAN</option>
+                    <option value="CARRO">CARRO</option>
+                </select>
+                <br>
+                
+                {% comment %} TIPO QUARTO {% endcomment %}
+                <label for="id_quarto">TIPO DE QUARTO:</label>
+                <select id="id_quarto" name="quarto">
+                    {% if escala.tipo_quarto %}
+                        <option value="{{ escala.tipo_quarto }}">{{ escala.tipo_quarto }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção</option>
+                    {% endif %}
+                    <option value="INDIVIDUAL">INDIVIDUAL</option>
+                    <option value="DUPLO">DUPLO</option>
+                    <option value="TRIPLO">TRIPLO</option>
+                </select>
+                <br>
+        
+                {% comment %} COMPANHIA AEREA {% endcomment %}
+                <label for="id_companhia">Companhia Aerea:</label>
+                <input type="text" id="id_companhia" name="companhia" value="{{escala.companhia_aerea|default_if_none:" "}}">
+                <br>
+        
+                {% comment %} LOC VOO {% endcomment %}
+                <label for="id_loc">LOC:</label>
+                <input type="text" id="=id_loc" name="loc" value="{{escala.loc_voo|default_if_none:" "}}">
+                <br>
+        
+                {% comment %} VALOR hotel {% endcomment %}
+                <label for="id_valor_hotel">Valor hotel:</label>
+                <input type="text" id="id_valor_hotel" name="valor_hotel" value="{{ escala.valor_hotel|default_if_none:'0'}}">
+                <br> 
+                
+                {% comment %} Nome hotel {% endcomment %}
+                <label for="id_nome_hotel">Nome hotel:</label>
+                <input type="text" id="id_nome_hotel" name="nome_hotel" value="{{ escala.nome_hotel|default_if_none:' '}}">
+                <br>    
+        
+                {% comment %} STATUS {% endcomment %}
+                <label for="status2">Status:</label>
+                <select id="status2" name="status2">
+                    {% if escala.status_fase2 %}
+                        <option value="{{ escala.status_fase2 }}">{{ escala.status_fase2 }}</option>
+                    {% else %}
+                        <option value="">Selecione uma opção:</option>
+                    {% endif %}
+                        <option value="CONCLUÍDO">CONCLUÍDO</option>
+                </select>
+                <br>
+
+                <label for="voltar_fase">Voltar Fase?</label>
+                <input type="checkbox" id="voltar_fase" name="voltar_fase" value="true">
+                <br>
+        
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit">Atualizar</button>
+                    <a href="/compra_passagem/" style="text-decoration: none;">
+                        <button type="button">Voltar Tela Passagens</button>
+                    </a>
+                </div>
+            </form>
+        
+            <div class="colaborador-card" style="display: inline-block; vertical-align: top;">
+                <h3>Informações do Colaborador</h3>
+                <p><strong>Nome do Colaborador:</strong> {{ colaborador.nome }}</p>
+                <p><strong>RG:</strong> {{ colaborador.rg }}</p>
+                <p><strong>CPF:</strong> {{ colaborador.cpf }}</p>
+                <p><strong>Cidade:</strong> {{ colaborador.cidade }}</p>
+                <p><strong>Telefone:</strong> {{ colaborador.telefone }}</p>
+                <p><strong>Data de Nascimento:</strong> {{ colaborador.data_nascimento|date:'d/m/Y' }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

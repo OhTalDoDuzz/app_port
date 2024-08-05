@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+    <title>Comprar Passagem</title>
+</head>
+<body>
+    <nav>
+        <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+        <h1>Comprar Passagem</h1>
+    </nav>
+    <div class="table-wrapper">
+        <table class="tabela_geral">
+            <thead  class="tabela_header">
+                <tr>
+                    <th>ID</th>
+                    <th>Evento</th>
+                    <th>Colaborador</th>
+                    <th>Passagem</th>
+                    <th>Valor Passagem</th>
+                    <th>Sugestão Hora Ida</th>
+                    <th>Sugestão Hora Volta</th>
+                    <th>Hora Ida</th>
+                    <th>Hora Volta</th>
+                    <th>Meio de Transporte</th>
+                    <th>Companhia Aérea</th>
+                    <th>Localizador de Voo</th>
+                    <th>Valor Hotel</th>
+                    <th>Status</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for escala in escalas %}
+                {% if escala.status_fase1 == "CONCLUÍDO" and escala.status_fase2 == "PENDENTE" %}
+                <tr>
+                    <td class="linha_tabela">{{ escala.id }}</td>
+                    <td class="linha_tabela">{{ escala.nome_evento }}</td>
+                    <td class="linha_tabela">{{ escala.colaborador_name }}</td>
+                    <td class="linha_tabela">{{ escala.passagem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.valor_passagem |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.sugestao_hora_ida |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.sugestao_hora_volta |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.hora_ida |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.hora_volta |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.meio_transporte |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.companhia_aerea |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.loc_voo |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.valor_hotel |default_if_none:""}}</td>
+                    <td class="linha_tabela">{{ escala.status_fase2 |default_if_none:""}}</td>
+                    <td class="btn_cell">
+                        <a class="buttons" href="{% url 'update_passagem' escala.id %}">🔃</a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

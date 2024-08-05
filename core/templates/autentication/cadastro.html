@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'autentication_cadastro.css' %}">
+    <title>CADASTRO</title>
+</head>
+<body>
+    <div class="formulario">
+        <h1>CADASTRO</h1>
+            <form class="Cadastrar-form" action="{% url 'cadastro'%}" method = 'POST' >
+                {% csrf_token %} 
+                <input class="input_box" type="text" placeholder = "Username" name="username" required><br><br>
+                <input class="input_box" type="text" placeholder = "Primeiro Nome" name="first_name"><br><br>
+                <input class="input_box" type="text" placeholder = "Sobrenome" name="last_name"><br><br>
+                <input class="input_box" type="email" placeholder = "Email" name="email"><br><br>
+                <input class="input_box" type="password" placeholder = "Password" name="senha"><br><br>    
+                <div class="cadastrarInputs">
+                    <input class= "submit_btn "type="submit" value="Cadastrar">
+                    <div class="btn_page">
+                        <a class="cadastre" href="{% url 'login'%}">ENTRAR</a>
+                    </div>
+                </div>
+            </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

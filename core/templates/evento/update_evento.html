@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'update_evento.css' %}">
+    <title>UPDATE EVENTO</title>
+</head>
+<body>
+    <h1>Modificar evento</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input class="field-form" type="text" name="nome" placeholder="Nome" value="{{ evento.nome|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="cidade" placeholder="Cidade" value="{{ evento.cidade|default_if_none:""  }}">
+
+        <input class="field-form" type="text" name="estado" placeholder="Estado" value="{{ evento.estado|default_if_none:""  }}">
+        
+        <input class="field-form" type="text" name="tipo" placeholder="Tipo" value="{{ evento.tipo|default_if_none:""  }}">
+
+        <input class="field-form" type="date" name="data" placeholder="Data" value="{% if evento.data %}{{ evento.data|date:'Y-m-d' }}{% endif %}">
+
+        <input class="field-form" type="text" name="sku" placeholder="SKU" value="{{ evento.sku|default_if_none:""  }}">
+        
+        <input class="submit_btn" type="submit" value="ATUALIZAR">
+    </form>    
+</body>
+</html>

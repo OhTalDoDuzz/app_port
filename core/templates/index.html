@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <div class= sidebar-index>
+        <img src="../static/img/norte_mkt.png" class="logo"/>
+        <div class="user-info">
+            <h1 id="user-info-nome">{{user.first_name | upper}} {{user.last_name | upper}}</h1>
+            <p id="user-info-email">email: {{user.email}}</p>
+            <p id="user-info-username">username: {{user.username}}</p>
+        </div>
+        <div class="btn_conteiner">
+            <!-- <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">| Menus |</span>
+                <div class="divider-line"></div>
+            </div> -->
+            <a class="side_btn" href="{% url 'escalacao' %}"> Escalação </a>
+            <a class="side_btn" href="{% url 'compra_passagem' %}">  Compra Passagem</a>
+            <a class="side_btn" href="{% url 'beneficios' %}">  Benefícios</a>
+            <a class="side_btn" href="{% url 'realizado' %}">  Realizado</a>
+            <a class="side_btn">  Comparativo</a>
+            <a class="side_btn" href="{% url 'consultar_escala' %}">  Consultar Escala</a>
+            <a class="side_btn" href="{% url 'consulta_escala_col' %}">  Consulta Colaborador</a>
+            <a class="side_btn" href="{% url 'cadastrar_evento' %}">  Cadastro Evento </a>
+            <a class="side_btn" href="{% url 'colaborador' %}">  Cadastro Colaborador</a>
+            <a class="side_btn" href="{% url 'fornecedor' %}">  Cadastro Fornecedor</a>    
+            <a class="side_btn" href="{% url 'quantitativo'%}"> Quantitativo</a>
+        </div>
+        <!-- <div class="btn_conteiner">
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">| Admin |</span>
+                <div class="divider-line"></div>
+            </div>
+        </div> -->
+    </div>
+    <div class="background_page">
+        <h1> LOGISTICA INTERNA </h1>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'autentication_login.css' %}">
+    <title>Atualizar Passagem</title>
+    </script>
+</head>
+<body>
+    <div class="formulario" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="../../static/img/norte_mkt.png" class="logoNorte" alt="logo Norte"/>
+        <h2 class="tituloLogin">ATUALIZAR REALIZADO</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="qtd_diaria">Quantidade Diária:</label>
+            <input type="text" id="qtd_diaria" name="qtd_diaria" value="{{ realizado.qtd_diaria }}" disabled>
+            <input type="text" id="r_qtd_diaria" name="r_qtd_diaria" value="{{ realizado.r_qtd_diaria }}">
+            <br>
+
+            <label for="qtd_dias_pgto">Quantidade Dias de pagamento:</label>
+            <input type="text" id="qtd_dias_pgto" name="qtd_dias_pgto" value="{{ realizado.qtd_dias_pgto }}" disabled>
+            <input type="text" id="r_qtd_dias_pgto" name="r_qtd_dias_pgto" value="{{ realizado.r_qtd_dias_pgto }}">
+            <br>
+
+            <label for="unidade_diaria">Unidade diária:</label>
+            <input type="text" id="unidade_diaria" name="unidade_diaria" value="{{ realizado.unidade_diaria }}" disabled>
+            <input type="text" id="r_unidade_diaria" name="r_unidade_diaria" value="{{ realizado.r_unidade_diaria}}">
+            <br>
+
+            <label for="total_diaria">Total diária:</label>
+            <input type="text" id="total_diaria" name="total_diaria" value="{{ realizado.total_diaria }}" disabled>
+            <input type="text" id="r_total_diaria" name="r_total_diaria" value="{{ realizado.r_total_diaria}}">
+            <br>
+
+            <label for="valor_passagem">Valor passagem:</label>
+            <input type="text" id="valor_passagem" name="valor_passagem" value="{{ realizado.valor_passagem }}" disabled>
+            <input type="text" id="r_valor_passagem" name="r_valor_passagem" value="{{ realizado.r_valor_passagem}}">
+            <br>
+
+            <label for="meio_transporte">Meio de Transporte:</label>
+            <input type="text" id="meio_transporte" name="meio_transporte" value="{{ realizado.meio_transporte }}" disabled>
+            <select id="r_meio_transporte" name="r_meio_transporte">
+                {% if realizado.r_meio_transporte %}
+                    <option value="{{realizado.r_meio_transporte }}">{{ realizado.r_meio_transporte }}</option>
+                {% else %}
+                    <option value="">Selecione uma opção:</option>
+                {% endif %}
+                    <option value="ÔNIBUS">ÔNIBUS</option>
+                    <option value="AVIÃO">AVIÃO</option>
+                    <option value="VAN">VAN</option>
+                    <option value="CARRO">CARRO</option>
+            </select>
+            <br>
+
+            <label for="companhia_aerea">Companhia Aerea</label>
+            <input type="text" id="companhia_aerea" name="companhia_aerea" value="{{ realizado.companhia_aerea  }}" disabled>
+            <input type="text" id="r_companhia_aerea" name="r_companhia_aerea" value="{{ realizado.r_companhia_aerea }}">
+            <br>
+
+            <label for="alimentacao_semana_un">Alimentação semana unidade</label>
+            <input type="text" id="alimentacao_semana_un" name="alimentacao_semana_un" value="{{ realizado.alimentacao_semana_un  }}" disabled>
+            <input type="text" id="r_alimentacao_semana_un" name="r_alimentacao_semana_un" value="{{ realizado.r_alimentacao_semana_un }}">
+            <br>
+
+            <label for="alimentacao_semana_qtd">Alimentação semana quantidade</label>
+            <input type="text" id="alimentacao_semana_qtd" name="alimentacao_semana_qtd" value="{{ realizado.alimentacao_semana_qtd  }}" disabled>
+            <input type="text" id="r_alimentacao_semana_qtd" name="r_alimentacao_semana_qtd" value="{{ realizado.r_alimentacao_semana_qtd }}">
+            <br>
+
+            <label for="alimentacao_fds_un">Alimentação fim de semana unidade</label>
+            <input type="text" id="alimentacao_fds_un" name="alimentacao_fds_un" value="{{ realizado.alimentacao_fds_un  }}" disabled>
+            <input type="text" id="r_alimentacao_fds_un" name="r_alimentacao_fds_un" value="{{ realizado.r_alimentacao_fds_un }}">
+            <br>
+
+            <label for="alimentacao_fds_qtd">Alimentação fim de semana quantidade</label>
+            <input type="text" id="alimentacao_fds_qtd" name="alimentacao_fds_qtd" value="{{ realizado.alimentacao_fds_qtd  }}" disabled>
+            <input type="text" id="r_alimentacao_fds_qtd" name="r_alimentacao_fds_qtd" value="{{ realizado.r_alimentacao_fds_qtd }}">
+            <br>
+
+            <label for="alimentacao_total">Alimentação total</label>
+            <input type="text" id="alimentacao_total" name="alimentacao_total" value="{{ realizado.alimentacao_total  }}" disabled>
+            <input type="text" id="r_alimentacao_total" name="r_alimentacao_total" value="{{ realizado.r_alimentacao_total }}">
+            <br>
+
+            <label for="valor_mobilidade">Valor Mobilidade</label>
+            <input type="text" id="valor_mobilidade" name="valor_mobilidade" value="{{ realizado.valor_mobilidade  }}" disabled>
+            <input type="text" id="r_valor_mobilidade" name="r_valor_mobilidade" value="{{ realizado.r_valor_mobilidade }}">
+            <br>
+
+            <label for="valor_deslocamento">Valor deslocamento</label>
+            <input type="text" id="valor_deslocamento" name="valor_deslocamento" value="{{ realizado.valor_deslocamento  }}" disabled>
+            <input type="text" id="r_valor_deslocamento" name="r_valor_deslocamento" value="{{ realizado.r_valor_deslocamento }}">
+            <br>
+
+            <label for="voltar_fase">Voltar Fase (Escalação)?</label>
+            <input type="checkbox" id="voltar_fase" name="voltar_fase" value="true">
+            <br>
+
+            <div style="display: flex; gap: 10px;">
+                <button type="submit">Atualizar</button>
+                <a href="/realizado/" style="text-decoration: none;">
+                    <button type="button">Voltar Tela Passagens</button>
+                </a>
+            </div>
+        </form>
+    </div>     
+</body>
+</html>

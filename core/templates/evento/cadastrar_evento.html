@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+    <title>CADASTRAR EVENTO</title>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <nav>
+                <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+                <h1>CADASTRAR EVENTO</h1>
+            </nav>
+            <form method="POST">
+                <div class="inserir_dados">
+                    {% csrf_token %}
+                    <input class= "cadastar_inputs" type="text" name="nome" placeholder="Nome">
+                    <input class= "cadastar_inputs "type="text" name="cidade" placeholder="cidade">
+                    <input class= "cadastar_inputs "type="text" name="estado" placeholder="estado">
+                    <input class= "cadastar_inputs "type="date" name="data" placeholder="Data">
+                    <input class= "cadastar_inputs "type="text" name="tipo" placeholder="Tipo">
+                    <input class= "cadastar_inputs "type="text" name="sku" placeholder="Sku">
+                    <input class= "submit_btn "type="submit" value="Submit">
+                </div>
+            </form>
+            <div class="table-wrapper">
+                <table class="tabela_geral">
+                    <thead  class="tabela_header">
+                        <tr>
+                            <th class="cabecalho">Nome</th>
+                            <th class="cabecalho">Cidade</th>
+                            <th class="cabecalho">Estado</th>
+                            <th class="cabecalho">Data</th>
+                            <th class="cabecalho">Tipo</th>
+                            <th class="cabecalho">Sku</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evento in eventos %}
+                        <tr>
+                            <td class="linha_tabela">{{ evento.nome }}</td>
+                            <td class="linha_tabela">{{ evento.cidade }}</td>
+                            <td class="linha_tabela">{{ evento.estado }}</td>
+                            <td class="linha_tabela">{{ evento.data }}</td>
+                            <td class="linha_tabela">{{ evento.tipo }}</td>
+                            <td class="linha_tabela">{{ evento.sku }}</td>
+                            <td class="btn_cell">
+                                <a class="buttons" href="{% url 'update_evento' evento.id %}">🔃</a>
+                                <a class="buttons" href="{% url 'delete_evento' evento.id %}">⛔</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

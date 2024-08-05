@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'quantitativo.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formularioOriginal = document.querySelector('.inserir_dados');
+
+            function clonarFormulario() {
+                const cloneFormulario = formularioOriginal.cloneNode(true);
+
+                // Atribuir ID único ao formulário clonado
+                const formCount = document.querySelectorAll('.inserir_dados').length + 1;
+                cloneFormulario.id = `form-${formCount}`;
+
+                // Remover o botão "+" do formulário clonado
+                cloneFormulario.querySelector('.replicar_form_btn').remove();
+
+                // Preencher o campo Evento do formulário clonado com o valor selecionado no original
+                const eventoSelecionado = formularioOriginal.querySelector('.select[name="evento_select"]').value;
+                cloneFormulario.querySelector('.select[name="evento_select"]').value = eventoSelecionado;
+
+                cloneFormulario.querySelector('.select[name="area_select"]').selectedIndex = 0;
+                cloneFormulario.querySelector('.quantity').value = '';
+
+                // Adicionar botão de delete
+                const btnDelete = document.createElement('button');
+                btnDelete.type = 'button';
+                btnDelete.innerText = '-';
+                btnDelete.classList.add('deletar_form_btn');
+                btnDelete.addEventListener('click', function() {
+                    cloneFormulario.remove(); // Remover o formulário clonado ao clicar no botão de delete
+                });
+                cloneFormulario.appendChild(btnDelete);
+
+                // Inserir o formulário clonado imediatamente após o formulário original
+                formularioOriginal.parentNode.insertBefore(cloneFormulario, formularioOriginal.nextSibling);
+                cloneFormulario.classList.remove('hidden'); // Exibir o formulário clonado
+            }
+
+            // Evento de clique no botão replicar
+            const btnReplicar = document.querySelector('.replicar_form_btn');
+            btnReplicar.addEventListener('click', clonarFormulario);
+        });
+    </script>
+
+    <title>QUANTITATIVO</title>
+</head>
+<body>
+<nav>
+    <a class="btn_nav" href="{% url 'index'%}"> HOME </a>
+    <h1>QUANTITATIVO</h1>
+</nav>
+
+<form method="POST">
+    <div class="inserir_dados">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="evento_select">Evento</label>
+            <select class="select" id="evento_select" name="evento_select">
+                <option value="">Evento</option>
+                {% for evento in eventos %}
+                    <option value="{{ evento.id }}" data-cidade="{{ evento.cidade }}">{{ evento.nome }} - {{ evento.cidade }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="area_select">Área</label>
+            <select class="select" name="area_select">
+                <option value="">Área</option>
+                {% for area in areas %}
+                    <option value="{{ area.id }}">{{ area.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="contrato_select">Área</label>
+            <select class="select" name="contrato_select">
+                <option value="">Contrato</option>
+                {% for contrato in contratos %}
+                    <option value="{{ contrato.id }}">{{ contrato.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="data_inicio">Data de Início</label>
+            <input class="select_dt" type="date" id="data_inicio" name="data_inicio" value="select_dt" date:'Y-m-d' required>
+        </div>
+
+        <div class="form-group">
+            <label for="data_fim">Data de Fim</label>
+            <input class="select_dt" type="date" id="data_fim" name="data_fim" value="select_dt" date:'Y-m-d' required>
+        </div>
+
+        <div class="form-group">
+            <label for="passagem_select">Passagem?</label>
+            <select class="select" id="passagem_select" name="passagem_select">
+                <option value="True">SIM</option>
+                <option value="False">NÃO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="data_ida">Data de Ida</label>
+            <input class="select_dt" type="date" id="data_ida" name="data_ida" value="select_dt" date:'Y-m-d' disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="data_volta">Data de Volta</label>
+            <input class="select_dt" type="date" id="data_volta" name="data_volta" value="select_dt" date:'Y-m-d' disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="sugestao_ida">Sugestão de Ida</label>
+            <input class="select_sug" type="text" id="sugestao_ida" name="sugestao_ida" placeholder="Sugestão Ida">
+        </div>
+
+        <div class="form-group">
+            <label for="sugestao_volta">Sugestão de Volta</label>
+            <input class="select_sug" type="text" id="sugestao_volta" name="sugestao_volta" placeholder="Sugestão Volta">
+        </div>
+
+        <div class="form-group">
+            <label for="quantity_select">Quantidade</label>
+            <input type="number" class="quantity" name="quantity_select" placeholder="Qtd" min="0" max="10" required/>
+        </div>  
+
+        <button type="button" class="replicar_form_btn">+</button>
+    </div>
+    <input class="submit_btn" type="submit" value="Submit">
+</form> 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const eventoSelect = document.getElementById('evento_select');
+        const passagemSelect = document.getElementById('passagem_select');
+        const dataIda = document.getElementById('data_ida');
+        const dataVolta = document.getElementById('data_volta');
+        const sug_hora_Ida = document.getElementById('sugestao_ida');
+        const sug_hora_Volta = document.getElementById('sugestao_volta');
+    
+        function updateFieldState(isRequired) {
+            dataIda.disabled = !isRequired;
+            dataVolta.disabled = !isRequired;
+            sug_hora_Ida.disabled = !isRequired;
+            sug_hora_Volta.disabled = !isRequired;
+            
+            if (isRequired) {
+                dataIda.setAttribute('required', 'required');
+                dataVolta.setAttribute('required', 'required');
+                sug_hora_Ida.setAttribute('required', 'required');
+                sug_hora_Volta.setAttribute('required', 'required');
+            } else {
+                dataIda.removeAttribute('required');
+                dataVolta.removeAttribute('required');
+                sug_hora_Ida.removeAttribute('required');
+                sug_hora_Volta.removeAttribute('required');
+            }
+        }
+    
+        eventoSelect.addEventListener('change', function() {
+            const selectedOption = eventoSelect.options[eventoSelect.selectedIndex];
+            const cidade = selectedOption.getAttribute('data-cidade');
+    
+            if (cidade === 'São Paulo') {
+                passagemSelect.value = 'False';
+                updateFieldState(false);
+            } else {
+                passagemSelect.value = 'True';
+                updateFieldState(true);
+            }
+        });
+    
+        passagemSelect.addEventListener('change', function() {
+            if (this.value === 'True') {
+                updateFieldState(true);
+            } else {
+                updateFieldState(false);
+            }
+        });
+    });
+</script>
+</head>
+<body>
+<div class="escala_view">
+    <table class="tabela_geral">
+        <thead class="tabela_header">
+            <tr>
+                <th>Nome Evento</th>
+                <th>Data Evento</th>
+                <th>Nome Área</th>
+                <th>Contrato</th>
+                <th>Data Inicio</th>
+                <th>Data Fim</th>
+                <th>Passagem</th>
+                <th>data_ida</th>
+                <th>data_volta</th>
+                <th>sugestao_hora_ida</th>
+                <th>sugestao_hora_volta</th>
+                <th>Quant. Diarias</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for escala in escalas|dictsortreversed:"id" %}
+                {% if escala.status_fase1 == 'PENDENTE'%}
+                    <tr>
+                        <td class="linha_tabela" data-label="Nome Evento">{{ escala.nome_evento }}</td>
+                        <td class="linha_tabela" data-label="Data Evento">{{ escala.data_evento | date:'d/m/Y'}}</td>
+                        <td class="linha_tabela" data-label="Nome Área">{{ escala.nome_area }}</td>
+                        <td class="linha_tabela" data-label="Nome Área">{{ escala.contrato }}</td>
+                        <td class="linha_tabela" data-label="Data Inicio">{{ escala.data_inicio | date:'d/m/Y' }}</td>
+                        <td class="linha_tabela" data-label="Data Fim">{{ escala.data_final | date:'d/m/Y' }}</td>
+                        <td class="linha_tabela" data-label="Passagem">{{ escala.passagem }}</td>
+                        <td class="linha_tabela" data-label="data_ida">{{ escala.data_ida | date:'d/m/Y' }}</td>
+                        <td class="linha_tabela" data-label="data_volta">{{ escala.data_volta | date:'d/m/Y' }}</td>
+                        <td class="linha_tabela" data-label="sugestao_hora_ida">{{ escala.sugestao_hora_ida }}</td>
+                        <td class="linha_tabela" data-label="sugestao_hora_volta">{{ escala.sugestao_hora_volta }}</td>
+                        <td class="linha_tabela" data-label="Quant. Diarias">{{ escala.qtd_diaria }}</td>
+                        <td class="btn_cell" data-label="Ações">
+                            <a class="buttons" href="{% url 'delete_escala' escala.id %}">⛔</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
